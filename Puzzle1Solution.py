@@ -3,13 +3,14 @@
 ###Start Time: 10:00am
 ###End Time: 10:25am
 ###Author: Jonathan LeFeber
-###Lines of Code: 35
+###Lines of Code: 39
 #################################
 ElfList = []
 ChonkiestElf = 0
 ChonkiestElfTeam = 0
 
 def d1s1Sum():
+    ElfList = []
     f = open("Puzzle1Input.txt", "r")
     CurrentElfSum = 0
     for line in f:
@@ -20,7 +21,6 @@ def d1s1Sum():
             CurrentElfSum = 0
         else:
             CurrentElfSum += int(currentLine.strip())
-    #ElfList.remove('')
     #print("ElfList: ",ElfList)
     return ElfList
 
@@ -36,24 +36,11 @@ def d1s2MaxTeam(ElfListTeam):
     ChonkiestElfTeam = 0
     print("Now finding chonkiest elf team of 3:")
     for index in range(3):
+        ChonkiestElf = 0
         ChonkiestElf = d1s1Max(ElfListTeam)
         ChonkiestElfTeam += ChonkiestElf
         ElfListTeam.remove(ChonkiestElf)
-    
-    """
-    ChonkiestElf = 0
-    for elf in ElfList:
-        if int(elf) > ChonkiestElf:
-            ChonkiestElf = elf
-    ChonkiestElfTeam += ChonkiestElf
-    ElfList.remove(ChonkiestElf)
-    ChonkiestElf = 0
-    for elf in ElfList:
-        if int(elf) > ChonkiestElf:
-            ChonkiestElf = elf
-    ChonkiestElfTeam += ChonkiestElf
-    """
-    print("Chonkers = ",ChonkiestElfTeam)
+    print("Chonkers Combined = ",ChonkiestElfTeam)
     
 d1s1Max(d1s1Sum())
 d1s2MaxTeam(d1s1Sum())
