@@ -5,6 +5,8 @@
 ###Author: Jonathan LeFeber
 ###Lines of Code: 56
 #################################
+import time
+
 def callTheShots():
     totalScore = 0
     f = open("Puzzle2Input.txt", "r")
@@ -61,3 +63,4 @@ def callTheResults():
     
 callTheShots()
 callTheResults()
+print(time.process_time())
