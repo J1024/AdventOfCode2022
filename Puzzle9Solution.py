@@ -8,15 +8,16 @@
 import time
 headLocation = [0,0]
 tailLocation = [0,0]
-hasBeen = []
+hasBeen = ["0/0"]
 f = open("Puzzle9Input.txt", "r")
 for line in f:
     line = line.strip()
     moves = int(line[2:])
     direction = line[:1]
-    print("Head is at: ",headLocation)
-    print("Tail is at: ",tailLocation)
-    print("Moving ",moves," times in ",direction," direction")
+    #print("Starting Move Set:")
+    #print("Head is at: ",headLocation)
+    #print("Tail is at: ",tailLocation)
+    #print("Moving ",moves," times in ",direction," direction")
     for move in range(moves):
         #MoveHead
         if direction == "L":
@@ -29,11 +30,30 @@ for line in f:
             headLocation[1] -= 1
         #MoveTail
         #If I'm 2 away or greater, I need to catchup
-        if tailLocation[0] 
+        if abs(headLocation[0] - tailLocation[0]) > 1:
+            if direction == "L":
+                tailLocation[0]=headLocation[0]+1
+                tailLocation[1]=headLocation[1]
+            elif direction == "R":
+                tailLocation[0]=headLocation[0]-1
+                tailLocation[1]=headLocation[1]
+        elif abs(headLocation[1] - tailLocation[1]) > 1:
+            if direction == "D":
+                tailLocation[1]=headLocation[1]+1
+                tailLocation[0]=headLocation[0]
+            elif direction == "U":
+                tailLocation[1]=headLocation[1]-1
+                tailLocation[0]=headLocation[0]
+        tailString = str(tailLocation[0])+"/"+str(tailLocation[1])
+        if tailString not in hasBeen:
+            hasBeen.append(tailString)
+        
+        #print("After ",move+1," move(s), Head is at: ",headLocation)
+        #print("After ",move+1," move(s), Tail is at: ",tailLocation)
 
-
-
-
+    #print("")
+#print(hasBeen)
+print("Tail has been in ",len(hasBeen)," locations.")
 
 
 """
